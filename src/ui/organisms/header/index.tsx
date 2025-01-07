@@ -42,7 +42,13 @@ export const Header = () => {
         )}
       >
         <button
-          className={clsx('flex', 'md:hidden', 'items-center', 'gap-3')}
+          className={clsx(
+            'flex',
+            'md:hidden',
+            'items-center',
+            'gap-3',
+            'w-full'
+          )}
           onClick={onMenuBarClick}
         >
           {menuVisible ? (
@@ -66,11 +72,12 @@ export const Header = () => {
                 'py-2',
                 'flex',
                 'flex-col',
-                'items-start',
                 '[&>div]:py-2',
+                'text-left',
                 'border-b-2',
                 'border-t-2',
-                'border-zinc-900'
+                'border-zinc-900',
+                'text-left'
               )}
             >
               <div>
@@ -120,7 +127,7 @@ export const Header = () => {
 
 const HomeLink = () => (
   <Link
-    className={clsx('text-sm')}
+    className={clsx('text-sm', 'w-full')}
     to={RoutesService.getIndex()}
     icon={<NewspaperIcon className={clsx('size-4')} />}
   >
@@ -130,7 +137,7 @@ const HomeLink = () => (
 
 const AboutLink = () => (
   <Link
-    className={clsx('text-sm')}
+    className={clsx('text-sm', 'w-full')}
     to={RoutesService.getAbout()}
     icon={<ClipboardDocumentIcon className={'size-4'} />}
   >
@@ -140,7 +147,7 @@ const AboutLink = () => (
 
 const CreatePostLink = () => (
   <Link
-    className={clsx('text-sm')}
+    className={clsx('text-sm', 'w-full')}
     to={RoutesService.getPublishNews()}
     icon={<DocumentPlusIcon className={'size-4'} />}
   >
