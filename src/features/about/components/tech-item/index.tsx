@@ -28,7 +28,7 @@ export const TechItem = ({ site, name, logo }: Props) => {
           className={clsx(
             'text-sm',
             'underline',
-            'group-hover:no-underline',
+            'md:group-hover:no-underline',
             'transition',
             'text-center'
           )}
