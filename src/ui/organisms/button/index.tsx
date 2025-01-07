@@ -12,19 +12,18 @@ export const Button = ({ children, ...rest }: Props) => {
         'items-center',
         'gap-2',
         'rounded-md',
-        'bg-gray-700',
+        'bg-white/5',
         'py-1.5',
         'px-3',
         'text-sm/6',
-        'font-semibold',
         'text-white',
-        'shadow-inner',
         'shadow-white/10',
         'focus:outline-none',
-        'data-[hover]:bg-gray-600',
-        'data-[open]:bg-gray-700',
+        'data-[hover]:bg-white/15',
+        'data-[open]:bg-white/15',
         'data-[focus]:outline-1',
-        'data-[focus]:outline-white'
+        'data-[focus]:outline-white',
+        'transition-all'
       )}
       {...rest}
     >
