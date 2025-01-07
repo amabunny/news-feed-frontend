@@ -1,0 +1,20 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-prettier", "stylelint-css-modules"],
+  "rules": {
+    "prettier/prettier": true,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind"]
+      }
+    ],
+    "selector-class-pattern": ["error", "^[a-zA-Z0-9]+$"],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  }
+}

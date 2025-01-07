@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.stylesContainer {
+  @apply text-white;
+  @apply overflow-x-auto;
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+
+  blockquote {
+    @apply font-medium;
+    @apply border-l-4;
+    @apply pl-4;
+    @apply my-1;
+  }
+
+  :global(.ql-code-block-container) {
+    @apply font-mono text-sm text-white;
+    @apply bg-neutral-900;
+    @apply py-1 px-2;
+    @apply whitespace-pre-wrap;
+    @apply rounded-md;
+  }
+
+  ol {
+    li {
+      @apply relative;
+      @apply pl-5;
+
+      counter-increment: list-0;
+
+      :global(.ql-ui) {
+        @apply absolute;
+
+        &::before {
+          @apply -ml-5;
+        }
+      }
+    }
+
+    li[data-list='ordered'] {
+      :global(.ql-ui) {
+        &::before {
+          content: counter(list-0) '. ';
+        }
+      }
+    }
+
+    li[data-list='bullet'] {
+      :global(.ql-ui) {
+        &::before {
+          content: '•';
+        }
+      }
+    }
+  }
+
+  :global(.ql-align-center) {
+    @apply text-center;
+  }
+
+  :global(.ql-align-right) {
+    @apply text-right;
+  }
+
+  a {
+    @apply text-blue-500 hover:text-blue-400;
+  }
+}

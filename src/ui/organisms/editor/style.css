@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ql-toolbar {
+  &.ql-snow {
+    @apply border-none;
+    @apply px-0;
+
+    .ql-picker-label {
+      @apply text-white;
+    }
+  }
+}
+
+.ql-editor {
+  @apply overflow-y-auto;
+
+  ol {
+    @apply pl-0;
+  }
+
+  &.ql-snow {
+    @apply border-none;
+  }
+}
+
+.ql-container {
+  &.ql-snow {
+    @apply border-none;
+  }
+}
+
+.ql-snow {
+  .ql-stroke {
+    @apply stroke-white;
+  }
+
+  .ql-fill {
+    @apply fill-white;
+  }
+
+  .ql-editor {
+    a {
+      @apply text-white;
+    }
+  }
+}
+
+.ql-snow {
+  .ql-picker {
+    &.ql-expanded {
+      .ql-picker-options {
+        @apply bg-zinc-700;
+      }
+    }
+  }
+}
