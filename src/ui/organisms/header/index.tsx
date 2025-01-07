@@ -26,7 +26,6 @@ export const Header = () => {
         'border-b',
         'border-b-zinc-900',
         'backdrop-blur-sm',
-        'relative',
         'z-50'
       )}
     >
@@ -89,7 +88,13 @@ export const Header = () => {
 
         <div className={clsx('hidden', 'md:block')}>
           <div
-            className={clsx('flex', 'items-center', 'gap-5', 'justify-between')}
+            className={clsx(
+              'flex',
+              'items-center',
+              'gap-5',
+              'justify-between',
+              'leading-none'
+            )}
           >
             <div className={clsx('flex', 'items-center', 'gap-5')}>
               <div>
@@ -113,7 +118,7 @@ export const Header = () => {
 
 const HomeLink = () => (
   <Link
-    className={'text-sm'}
+    className={clsx('text-sm')}
     to={RoutesService.getIndex()}
     icon={<NewspaperIcon className={clsx('size-4')} />}
   >
@@ -123,7 +128,7 @@ const HomeLink = () => (
 
 const AboutLink = () => (
   <Link
-    className={'text-sm'}
+    className={clsx('text-sm')}
     to={RoutesService.getAbout()}
     icon={<ClipboardDocumentIcon className={'size-4'} />}
   >
@@ -133,7 +138,7 @@ const AboutLink = () => (
 
 const CreatePostLink = () => (
   <Link
-    className={'text-sm'}
+    className={clsx('text-sm')}
     to={RoutesService.getPublishNews()}
     icon={<DocumentPlusIcon className={'size-4'} />}
   >

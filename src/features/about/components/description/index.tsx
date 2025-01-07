@@ -1,12 +1,14 @@
 import clsx from 'clsx';
 
+import { Card } from '@/ui';
+
 interface Props {
   className?: string;
 }
 
 export const Description = ({ className }: Props) => {
   return (
-    <div className={clsx(className, 'bg-zinc-800', 'p-5', 'md:rounded-md')}>
+    <Card className={clsx(className, 'p-5')}>
       <img
         src={'/me/photo.jpg'}
         alt={'Sergei Antipin'}
@@ -36,6 +38,6 @@ export const Description = ({ className }: Props) => {
       </p>
 
       <div className={clsx('clear-left')} />
-    </div>
+    </Card>
   );
 };

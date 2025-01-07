@@ -4,11 +4,19 @@ import { Link as RouterLink, LinkProps, useLocation } from 'react-router';
 
 interface OwnProps {
   icon?: ReactNode;
+  underline?: boolean;
 }
 
 type Props = PropsWithChildren<LinkProps & OwnProps>;
 
-export const Link = ({ children, icon, className, to, ...rest }: Props) => {
+export const Link = ({
+  children,
+  icon,
+  className,
+  underline,
+  to,
+  ...rest
+}: Props) => {
   const location = useLocation();
   const isActive = location.pathname === to;
 
@@ -18,12 +26,13 @@ export const Link = ({ children, icon, className, to, ...rest }: Props) => {
         className,
         'text-white',
         'hover:text-gray-200',
-        'flex',
+        'inline-flex',
         'items-center',
         'gap-2',
         'relative',
         {
-          ['text-white/80']: isActive,
+          'text-white/80': isActive,
+          'underline hover:no-underline': underline,
         }
       )}
       to={to}

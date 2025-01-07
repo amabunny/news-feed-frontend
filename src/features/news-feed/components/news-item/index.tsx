@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router';
 import { useAppDispatch } from '@/lib/hooks';
 import { RoutesService } from '@/services/routes.ts';
 import { NewsFeedItem } from '@/types/news-feed';
-import { DropdownMenu } from '@/ui';
+import { Card, DropdownMenu } from '@/ui';
 
 import { deleteNewsItemThunk } from '../../model';
 import classes from './style.module.css';
@@ -55,15 +55,7 @@ export const NewsItem = ({
   }, [createdTimestamp]);
 
   return (
-    <div
-      className={clsx(
-        'bg-zinc-800',
-        'py-4',
-        'px-7',
-        'relative',
-        'sm:rounded-md'
-      )}
-    >
+    <Card className={clsx('relative')} indents>
       <div>
         <span className={'text-xs'}>Автор: {author}</span>
       </div>
@@ -116,6 +108,6 @@ export const NewsItem = ({
           </MenuButton>
         </DropdownMenu>
       </div>
-    </div>
+    </Card>
   );
 };
