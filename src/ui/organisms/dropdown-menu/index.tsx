@@ -25,7 +25,7 @@ export const DropdownMenu = ({ children, options }: Props) => {
           'w-52',
           'origin-top-right',
           'rounded-xl',
-          'bg-white/5',
+          'bg-zinc-700',
           'p-1',
           'text-sm/6',
           'text-white',
