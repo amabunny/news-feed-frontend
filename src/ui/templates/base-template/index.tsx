@@ -8,13 +8,7 @@ type Props = PropsWithChildren;
 export const BaseTemplate = ({ children }: Props) => {
   return (
     <div
-      className={clsx(
-        'bg-zinc-900',
-        'text-white',
-        'h-screen',
-        'flex',
-        'flex-col'
-      )}
+      className={clsx('bg-zinc-900', 'text-white', 'h-dvh', 'flex', 'flex-col')}
     >
       <div>
         <Header />
