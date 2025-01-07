@@ -52,7 +52,8 @@ export const NewsItemForm = ({ id }: Props) => {
   }, [dispatch, id, setValue]);
 
   return (
-    <div className={'bg-zinc-800 p-10 sm:rounded-md'}>
+    <div className={'bg-zinc-800 p-7 md:p-10 sm:rounded-md'}>
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2 className={'mb-7 text-3xl'}>
           {id ? 'Редактирование новости' : 'Публикация новости'}
