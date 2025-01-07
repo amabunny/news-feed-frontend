@@ -8,26 +8,28 @@ import {
 import clsx from 'clsx';
 import { useState } from 'react';
 
-import { RoutesService } from '@/services/routes.ts';
-import { Link } from '@/ui/molecules';
+import { RoutesService } from '@/services/routes';
+
+import { Link } from '../../molecules/link';
+import { DarkModeToggle } from '../dark-mode-toggle';
 
 export const Header = () => {
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const onMenuBarClick = () => {
-    setMenuVisible((visible) => !visible);
+    setMobileMenuVisible((visible) => !visible);
   };
 
   return (
     <header
       className={clsx(
         'py-4',
-        'bg-zinc-800',
-        'border-b',
-        'border-b-zinc-900',
-        'backdrop-blur-sm',
+        'relative',
         'z-50',
-        'relative'
+        'border-b',
+        'bg-white',
+        'dark:border-b-zinc-900',
+        'dark:bg-zinc-800'
       )}
     >
       <div
@@ -36,7 +38,6 @@ export const Header = () => {
           'mx-auto',
           'gap-5',
           'px-7',
-          'sm:px-7',
           'lg:px-2',
           'xl:px-0'
         )}
@@ -51,7 +52,7 @@ export const Header = () => {
           )}
           onClick={onMenuBarClick}
         >
-          {menuVisible ? (
+          {mobileMenuVisible ? (
             <XMarkIcon className={clsx('size-4')} />
           ) : (
             <Bars3Icon className={clsx('size-4')} />
@@ -59,7 +60,7 @@ export const Header = () => {
 
           <span> Меню </span>
 
-          {menuVisible && (
+          {mobileMenuVisible && (
             <div
               className={clsx(
                 'absolute',
@@ -115,8 +116,14 @@ export const Header = () => {
               </div>
             </div>
 
-            <div>
-              <CreatePostLink />
+            <div className={clsx('flex', 'gap-5', 'items-center')}>
+              <div>
+                <CreatePostLink />
+              </div>
+
+              <div>
+                <DarkModeToggle />
+              </div>
             </div>
           </div>
         </div>

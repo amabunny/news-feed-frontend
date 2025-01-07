@@ -66,7 +66,7 @@ export const NewsItem = ({
         </div>
       )}
 
-      <h2 className={clsx('text-white', 'mb-5', 'text-2xl')}>{title}</h2>
+      <h2 className={clsx('dark:text-white', 'mb-5', 'text-2xl')}>{title}</h2>
 
       <div
         className={classes.stylesContainer}

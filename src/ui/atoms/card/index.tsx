@@ -10,10 +10,16 @@ type Props = PropsWithChildren<{
 export const Card = ({ children, className, indents, hoverAble }: Props) => {
   return (
     <div
-      className={clsx(className, 'bg-zinc-800', 'md:rounded-md', {
-        ['px-7 py-4']: indents,
-        ['lg:hover:bg-zinc-700/60 lg:transition-all']: hoverAble,
-      })}
+      className={clsx(
+        className,
+        'bg-white/50',
+        'dark:bg-zinc-800',
+        'md:rounded-md',
+        {
+          ['px-7 py-4']: indents,
+          ['dark:lg:hover:bg-zinc-700/60 lg:transition-all']: hoverAble,
+        }
+      )}
     >
       {children}
     </div>

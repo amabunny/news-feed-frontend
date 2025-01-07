@@ -24,14 +24,15 @@ export const Link = ({
     <RouterLink
       className={clsx(
         className,
-        'text-white',
-        'hover:text-gray-200',
+        'text-black',
+        'dark:text-white',
+        'dark:hover:text-gray-200',
         'inline-flex',
         'items-center',
         'gap-2',
         'relative',
         {
-          'text-white/80': isActive,
+          'dark:text-white/80': isActive,
           'underline hover:no-underline': underline,
         }
       )}
