@@ -26,7 +26,8 @@ export const Header = () => {
         'border-b',
         'border-b-zinc-900',
         'backdrop-blur-sm',
-        'z-50'
+        'z-50',
+        'relative'
       )}
     >
       <div
@@ -65,6 +66,7 @@ export const Header = () => {
                 'py-2',
                 'flex',
                 'flex-col',
+                'items-start',
                 '[&>div]:py-2',
                 'border-b-2',
                 'border-t-2',
