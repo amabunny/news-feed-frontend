@@ -6,19 +6,26 @@ import {
   XMarkIcon,
 } from '@heroicons/react/16/solid';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { RoutesService } from '@/services/routes';
 
 import { Link } from '../../molecules/link';
-import { DarkModeToggle } from '../dark-mode-toggle';
 
-export const Header = () => {
+interface Props {
+  onMobileMenuVisibleChange?: (visible: boolean) => void;
+}
+
+export const Header = ({ onMobileMenuVisibleChange }: Props) => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const onMenuBarClick = () => {
     setMobileMenuVisible((visible) => !visible);
   };
+
+  useEffect(() => {
+    onMobileMenuVisibleChange?.(mobileMenuVisible);
+  }, [mobileMenuVisible, onMobileMenuVisibleChange]);
 
   return (
     <header
@@ -119,10 +126,6 @@ export const Header = () => {
             <div className={clsx('flex', 'gap-5', 'items-center')}>
               <div>
                 <CreatePostLink />
-              </div>
-
-              <div>
-                <DarkModeToggle />
               </div>
             </div>
           </div>

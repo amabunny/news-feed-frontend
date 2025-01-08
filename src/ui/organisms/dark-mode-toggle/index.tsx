@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
 export const DarkModeToggle = () => {
-  const [_, setEnabled] = useState(false);
+  const [, setEnabled] = useState(false);
   const bodyRef = useRef(window.document.body);
 
   const handleButtonClick = () => {

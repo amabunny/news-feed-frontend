@@ -1,11 +1,13 @@
 import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useState } from 'react';
 
 import { Header } from '../../organisms/header';
 
 type Props = PropsWithChildren;
 
 export const BaseTemplate = ({ children }: Props) => {
+  const [contentBackdrop, setContentBackdrop] = useState(false);
+
   return (
     <div
       className={clsx(
@@ -19,7 +21,7 @@ export const BaseTemplate = ({ children }: Props) => {
       )}
     >
       <div>
-        <Header />
+        <Header onMobileMenuVisibleChange={setContentBackdrop} />
       </div>
 
       <div
@@ -28,7 +30,17 @@ export const BaseTemplate = ({ children }: Props) => {
           'flex-col',
           'flex-grow',
           'overflow-y-auto',
-          'py-10'
+          'py-10',
+
+          contentBackdrop && [
+            'after:absolute',
+            'after:content-[""]',
+            'after:top-0',
+            'after:left-0',
+            'after:right-0',
+            'after:bottom-0',
+            'after:bg-zinc-900/80',
+          ]
         )}
       >
         <div
