@@ -6,3 +6,5 @@ export const AboutPage = () => (
     <About />
   </BaseTemplate>
 );
+
+export default AboutPage;

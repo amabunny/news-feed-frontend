@@ -12,3 +12,5 @@ export const NewsEditPage = () => {
     </BaseTemplate>
   );
 };
+
+export default NewsEditPage;

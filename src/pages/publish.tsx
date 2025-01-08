@@ -8,3 +8,5 @@ export const PublishPage = () => {
     </BaseTemplate>
   );
 };
+
+export default PublishPage;

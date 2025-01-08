@@ -6,3 +6,5 @@ export const NewsIdPage = () => {
   const { id } = useParams();
   return <BaseTemplate>new with id {id}</BaseTemplate>;
 };
+
+export default NewsIdPage;

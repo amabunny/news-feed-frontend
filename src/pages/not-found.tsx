@@ -18,3 +18,5 @@ export const NotFoundPage = () => {
     </BaseTemplate>
   );
 };
+
+export default NotFoundPage;

@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '@/lib/hooks';
 import { RoutesService } from '@/services/routes';
@@ -34,7 +35,17 @@ export const NewsItemForm = ({ id }: Props) => {
   });
 
   const onSubmit = async (data: NewsFeedItem) => {
-    await dispatch(createOrUpdateNewsItemThunk(data));
+    await dispatch(createOrUpdateNewsItemThunk(data))
+      .then(() => {
+        const message = id ? 'Новость сохранена' : 'Новость создана';
+        toast.success(message, {
+          theme: 'dark',
+        });
+      })
+      .catch(() => {
+        toast.error('При сохранении новости произошла ошибка');
+      });
+
     await navigate(RoutesService.getIndex());
   };
 

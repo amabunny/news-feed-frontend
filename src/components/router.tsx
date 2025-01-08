@@ -1,21 +1,45 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { IndexPage } from '@/pages';
-import { AboutPage } from '@/pages/about';
-import { NewsEditPage } from '@/pages/news/edit.tsx';
-import { NewsIdPage } from '@/pages/news/id';
-import { NotFoundPage } from '@/pages/not-found.tsx';
-import { PublishPage } from '@/pages/publish';
 import { RoutesService } from '@/services/routes';
+import { RouteParams } from '@/types/router';
+
+const routes: RouteParams[] = [
+  {
+    index: true,
+    Component: lazy(() => import('@/pages')),
+  },
+  {
+    path: RoutesService.getNewsId(),
+    Component: lazy(() => import('@/pages/news/id')),
+  },
+  {
+    path: RoutesService.getPublishNews(),
+    Component: lazy(() => import('@/pages/publish')),
+  },
+  {
+    path: RoutesService.getNewsItemEdit(),
+    Component: lazy(() => import('@/pages/news/edit')),
+  },
+  {
+    path: '*',
+    Component: lazy(() => import('@/pages/not-found')),
+  },
+  {
+    path: RoutesService.getAbout(),
+    Component: lazy(() => import('@/pages/about')),
+  },
+];
 
 export const Router = () => (
   <Routes>
-    <Route index element={<IndexPage />} />
-    <Route path={RoutesService.getNewsId()} element={<NewsIdPage />} />
-    <Route path={RoutesService.getPublishNews()} element={<PublishPage />} />
-    <Route path={RoutesService.getNewsItemEdit()} element={<NewsEditPage />} />
-    <Route path={RoutesService.getAbout()} element={<AboutPage />} />
-
-    <Route path={'*'} element={<NotFoundPage />} />
+    {routes.map(({ Component, index, path }) => (
+      <Route
+        key={path ?? ''}
+        path={path}
+        index={index}
+        element={<Component />}
+      />
+    ))}
   </Routes>
 );

@@ -8,3 +8,5 @@ export const IndexPage = () => {
     </BaseTemplate>
   );
 };
+
+export default IndexPage;
