@@ -41,13 +41,15 @@
   }
 
   .ql-editor {
+    img {
+      @apply md:max-w-96;
+    }
+
     a {
       @apply text-white;
     }
   }
-}
 
-.ql-snow {
   .ql-picker {
     &.ql-expanded {
       .ql-picker-options {
