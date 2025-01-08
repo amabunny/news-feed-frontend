@@ -22,12 +22,12 @@ const routes: RouteParams[] = [
     Component: lazy(() => import('@/pages/news/edit')),
   },
   {
-    path: '*',
-    Component: lazy(() => import('@/pages/not-found')),
-  },
-  {
     path: RoutesService.getAbout(),
     Component: lazy(() => import('@/pages/about')),
+  },
+  {
+    path: '*',
+    Component: lazy(() => import('@/pages/not-found')),
   },
 ];
 
