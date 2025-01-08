@@ -13,13 +13,15 @@ import { NewsItem } from '../news-item';
 
 export const NewsFeed = () => {
   const dispatch = useAppDispatch();
+
   const news: NewsFeedItem[] = useAppSelector((state) => state.newsFeed.news);
+  const loading = useAppSelector((state) => state.newsFeed.loading);
 
   useEffect(() => {
     void dispatch(getAllNewsThunk());
   }, [dispatch]);
 
-  const isListEmpty = news.length === 0;
+  const isListEmpty = news.length === 0 && !loading;
 
   return (
     <BaseTemplateFullHeightLayer

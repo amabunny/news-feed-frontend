@@ -4,7 +4,7 @@ import { deleteNewsItemThunk, getAllNewsThunk } from './thunks';
 import { NewsFeedState } from './types';
 
 const initialState: NewsFeedState = {
-  loading: false,
+  loading: true,
   news: [],
   error: null,
 };
@@ -34,6 +34,7 @@ export const newsFeedSlice = createSlice({
 
     builder.addCase(deleteNewsItemThunk.fulfilled, (state, action) => ({
       ...state,
+      loading: false,
       news: state.news.filter((news) => news.id !== action.meta.arg),
     }));
   },
