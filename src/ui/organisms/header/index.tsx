@@ -13,10 +13,11 @@ import { RoutesService } from '@/services/routes';
 import { Link } from '../../molecules/link';
 
 interface Props {
+  className?: string;
   onMobileMenuVisibleChange?: (visible: boolean) => void;
 }
 
-export const Header = ({ onMobileMenuVisibleChange }: Props) => {
+export const Header = ({ onMobileMenuVisibleChange, className }: Props) => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const onMenuBarClick = () => {
@@ -30,9 +31,9 @@ export const Header = ({ onMobileMenuVisibleChange }: Props) => {
   return (
     <header
       className={clsx(
+        className,
         'py-4',
         'relative',
-        'z-50',
         'border-b',
         'bg-white',
         'dark:border-b-zinc-900',

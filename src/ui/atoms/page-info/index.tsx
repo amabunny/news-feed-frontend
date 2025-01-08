@@ -13,7 +13,7 @@ export const PageInfo = ({ title, boldTitle, icon, description }: Props) => {
     <div className={clsx('flex', 'flex-col', 'items-center')}>
       {icon && <div className={clsx('size-40', 'mb-5')}>{icon}</div>}
       <div
-        className={clsx('text-center', 'text-5xl', 'mb-5', {
+        className={clsx('text-center', 'text-2xl', 'md:text-5xl', 'mb-5', {
           'font-bold': boldTitle,
         })}
       >

@@ -24,11 +24,7 @@ export const NewsFeed = () => {
   const isListEmpty = news.length === 0 && !loading;
 
   return (
-    <BaseTemplateFullHeightLayer
-      className={clsx('flex', 'flex-col', 'gap-5', {
-        'justify-center items-center flex-grow': isListEmpty,
-      })}
-    >
+    <BaseTemplateFullHeightLayer className={clsx('flex', 'flex-col', 'gap-5')}>
       {isListEmpty && (
         <PageInfo
           title={'Постов пока нет...'}

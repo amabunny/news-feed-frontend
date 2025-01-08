@@ -15,20 +15,15 @@ export const BaseTemplate = ({ children }: Props) => {
         'text-black',
         'dark:bg-zinc-900',
         'dark:text-white',
-        'flex',
-        'flex-col',
-        'h-dvh'
+        'relative'
       )}
     >
-      <div>
+      <div className={clsx('sticky', 'top-0', 'z-50')}>
         <Header onMobileMenuVisibleChange={setContentBackdrop} />
       </div>
 
       <div
         className={clsx(
-          'flex',
-          'flex-col',
-          'flex-grow',
           'overflow-y-auto',
           'py-10',
 
