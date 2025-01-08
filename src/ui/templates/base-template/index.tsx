@@ -39,7 +39,7 @@ export const BaseTemplate = ({ children }: Props) => {
             'after:left-0',
             'after:right-0',
             'after:bottom-0',
-            'after:bg-zinc-900/80',
+            'after:bg-zinc-900/90',
           ]
         )}
       >
