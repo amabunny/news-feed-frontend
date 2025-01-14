@@ -1,4 +1,5 @@
 import { FireIcon } from '@heroicons/react/16/solid';
+import clsx from 'clsx';
 import { useEffect } from 'react';
 
 import { NewsItem } from '@/features/news-feed/components/news-item';
@@ -19,7 +20,7 @@ export const HotNewsFeed = () => {
   const isListEmpty = news.length === 0 && !loading;
 
   return (
-    <BaseTemplateFullHeightLayer>
+    <BaseTemplateFullHeightLayer className={clsx('grid', 'gap-5')}>
       {isListEmpty && (
         <PageInfo
           title={'Постов пока нет...'}
@@ -30,6 +31,7 @@ export const HotNewsFeed = () => {
           }
         />
       )}
+
       {news.map((newsItem) => (
         <NewsItem key={newsItem.id} {...newsItem} />
       ))}
