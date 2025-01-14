@@ -19,7 +19,9 @@ export const PageInfo = ({ title, boldTitle, icon, description }: Props) => {
       >
         {title}
       </div>
-      {description && <div className={clsx('text-sm')}>{description}</div>}
+      {description && (
+        <div className={clsx('text-sm', 'text-center')}>{description}</div>
+      )}
     </div>
   );
 };
