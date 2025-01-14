@@ -1,4 +1,5 @@
 export * from './button';
+export * from './checkbox';
 export * from './dropdown-menu';
 export * from './editor';
 export * from './header';

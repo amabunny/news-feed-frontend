@@ -6,10 +6,10 @@ import {
 
 const BASE_URL = import.meta.env.VITE_NEWS_FEED_ENDPOINT_URL;
 
-export const getAllNews = async (): Promise<NewsFeedItem[]> => {
-  const newsList: unknown = await fetch(`${BASE_URL}/news`).then((response) =>
-    response.json()
-  );
+export const getAllNews = async (isHot?: boolean): Promise<NewsFeedItem[]> => {
+  const newsList: unknown = await fetch(`${BASE_URL}/news`, {
+    body: JSON.stringify({ isHot }),
+  }).then((response) => response.json());
 
   return newsFeedItemListSchema.parse(newsList);
 };

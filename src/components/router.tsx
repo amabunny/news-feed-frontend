@@ -26,6 +26,10 @@ const routes: RouteParams[] = [
     Component: lazy(() => import('@/pages/about')),
   },
   {
+    path: RoutesService.getHotNews(),
+    Component: lazy(() => import('@/pages/hot')),
+  },
+  {
     path: '*',
     Component: lazy(() => import('@/pages/not-found')),
   },

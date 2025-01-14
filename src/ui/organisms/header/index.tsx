@@ -2,6 +2,7 @@ import {
   Bars3Icon,
   ClipboardDocumentIcon,
   DocumentPlusIcon,
+  FireIcon,
   NewspaperIcon,
   XMarkIcon,
 } from '@heroicons/react/16/solid';
@@ -100,6 +101,10 @@ export const Header = ({ onMobileMenuVisibleChange, className }: Props) => {
               <div>
                 <CreatePostLink />
               </div>
+
+              <div>
+                <HotNewsLink />
+              </div>
             </div>
           )}
         </button>
@@ -121,6 +126,10 @@ export const Header = ({ onMobileMenuVisibleChange, className }: Props) => {
 
               <div>
                 <AboutLink />
+              </div>
+
+              <div>
+                <HotNewsLink />
               </div>
             </div>
 
@@ -163,5 +172,15 @@ const CreatePostLink = () => (
     icon={<DocumentPlusIcon className={'size-4'} />}
   >
     Создать пост
+  </Link>
+);
+
+const HotNewsLink = () => (
+  <Link
+    className={clsx('text-sm', 'w-full')}
+    to={RoutesService.getHotNews()}
+    icon={<FireIcon className={'size-4'} />}
+  >
+    Горячее
   </Link>
 );

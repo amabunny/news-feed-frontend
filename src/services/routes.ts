@@ -47,4 +47,8 @@ export class RoutesService {
   static getAbout() {
     return '/about';
   }
+
+  static getHotNews() {
+    return '/hot';
+  }
 }

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/lib/hooks';
 import { RoutesService } from '@/services/routes';
 import { NewsFeedItem, newsFeedItemSchema } from '@/types/news-feed';
-import { Button, Editor, Input } from '@/ui';
+import { Button, Checkbox, Editor, Input } from '@/ui';
 
 import { createOrUpdateNewsItemThunk, getNewsItemThunk } from '../../model';
 
@@ -83,6 +83,20 @@ export const NewsItemForm = ({ id }: Props) => {
             label={'Автор'}
             description={errors.author?.message}
             {...register('author')}
+          />
+        </div>
+
+        <div className={'mb-5'}>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Checkbox
+                checked={value ?? false}
+                onChange={onChange}
+                label={'Пометить горячей'}
+              />
+            )}
+            name={'isHot'}
           />
         </div>
 
