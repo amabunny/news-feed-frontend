@@ -39,7 +39,7 @@ export const Link = ({
       to={to}
       {...rest}
     >
-      {icon && <span>{icon}</span>}
+      {icon && <span className={'[&>*]:size-4'}>{icon}</span>}
       {children}
     </RouterLink>
   );

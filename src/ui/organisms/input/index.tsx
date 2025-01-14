@@ -9,6 +9,8 @@ import { forwardRef, ReactNode } from 'react';
 
 import { Label } from '@/ui/molecules';
 
+import classes from './style.module.css';
+
 type Props = {
   label?: ReactNode;
   description?: ReactNode;
@@ -28,6 +30,7 @@ export const Input = forwardRef<HTMLElement, Props>(
           <HeadlessInput
             ref={ref}
             className={clsx(
+              classes.input,
               'mt-3',
               'block',
               'w-full',

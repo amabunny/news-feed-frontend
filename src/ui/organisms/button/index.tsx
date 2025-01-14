@@ -1,13 +1,24 @@
 import { Button as HeadlessButton, ButtonProps } from '@headlessui/react';
 import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 
-type Props = PropsWithChildren<ButtonProps>;
+type Props = {
+  children?: ReactNode;
+  icon?: ReactNode;
+  fullWidth?: boolean;
+} & ButtonProps;
 
-export const Button = ({ children, ...rest }: Props) => {
+export const Button = ({
+  children,
+  className,
+  fullWidth,
+  icon,
+  ...rest
+}: Props) => {
   return (
     <HeadlessButton
       className={clsx(
+        className,
         'inline-flex',
         'items-center',
         'gap-2',
@@ -23,10 +34,12 @@ export const Button = ({ children, ...rest }: Props) => {
         'data-[open]:bg-white/15',
         'data-[focus]:outline-1',
         'data-[focus]:outline-white',
-        'transition-all'
+        'transition-all',
+        fullWidth && clsx('w-full')
       )}
       {...rest}
     >
+      {icon && <span className={clsx('size-4')}>{icon}</span>}
       {children}
     </HeadlessButton>
   );

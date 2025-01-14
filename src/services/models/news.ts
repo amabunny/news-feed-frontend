@@ -6,10 +6,28 @@ import {
 
 const BASE_URL = import.meta.env.VITE_NEWS_FEED_ENDPOINT_URL;
 
-export const getAllNews = async (isHot?: boolean): Promise<NewsFeedItem[]> => {
-  const newsList: unknown = await fetch(`${BASE_URL}/news`, {
-    body: JSON.stringify({ isHot }),
-  }).then((response) => response.json());
+export interface GetAllNewsParams {
+  isHot?: boolean | null;
+  author?: string | null;
+  title?: string | null;
+  content?: string | null;
+  createdStart?: string | null;
+  createdEnd?: string | null;
+}
+export const getAllNews = async (
+  params: GetAllNewsParams
+): Promise<NewsFeedItem[]> => {
+  const url = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== null && typeof value !== 'undefined') {
+      url.set(key, String(value));
+    }
+  });
+
+  const newsList: unknown = await fetch(`${BASE_URL}/news?${url}`).then(
+    (response) => response.json()
+  );
 
   return newsFeedItemListSchema.parse(newsList);
 };

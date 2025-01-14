@@ -95,15 +95,15 @@ export const Header = ({ onMobileMenuVisibleChange, className }: Props) => {
               </div>
 
               <div>
+                <HotNewsLink />
+              </div>
+
+              <div>
                 <AboutLink />
               </div>
 
               <div>
                 <CreatePostLink />
-              </div>
-
-              <div>
-                <HotNewsLink />
               </div>
             </div>
           )}
@@ -125,11 +125,11 @@ export const Header = ({ onMobileMenuVisibleChange, className }: Props) => {
               </div>
 
               <div>
-                <AboutLink />
+                <HotNewsLink />
               </div>
 
               <div>
-                <HotNewsLink />
+                <AboutLink />
               </div>
             </div>
 
@@ -149,7 +149,7 @@ const HomeLink = () => (
   <Link
     className={clsx('text-sm', 'w-full')}
     to={RoutesService.getIndex()}
-    icon={<NewspaperIcon className={clsx('size-4')} />}
+    icon={<NewspaperIcon />}
   >
     Новости
   </Link>
@@ -159,7 +159,7 @@ const AboutLink = () => (
   <Link
     className={clsx('text-sm', 'w-full')}
     to={RoutesService.getAbout()}
-    icon={<ClipboardDocumentIcon className={'size-4'} />}
+    icon={<ClipboardDocumentIcon />}
   >
     О проекте
   </Link>
@@ -169,7 +169,7 @@ const CreatePostLink = () => (
   <Link
     className={clsx('text-sm', 'w-full')}
     to={RoutesService.getPublishNews()}
-    icon={<DocumentPlusIcon className={'size-4'} />}
+    icon={<DocumentPlusIcon />}
   >
     Создать пост
   </Link>
@@ -179,7 +179,7 @@ const HotNewsLink = () => (
   <Link
     className={clsx('text-sm', 'w-full')}
     to={RoutesService.getHotNews()}
-    icon={<FireIcon className={'size-4'} />}
+    icon={<FireIcon />}
   >
     Горячее
   </Link>

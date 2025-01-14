@@ -1,11 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import { newsFeedSlice } from '@/features/news-feed';
+import { newsFeedReducer } from '@/features/news-feed';
 
 export const createStore = () => {
   return configureStore({
     reducer: combineReducers({
-      newsFeed: newsFeedSlice.reducer,
+      newsFeed: newsFeedReducer,
     }),
   });
 };

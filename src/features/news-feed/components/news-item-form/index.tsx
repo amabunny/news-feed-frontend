@@ -58,6 +58,7 @@ export const NewsItemForm = ({ id }: Props) => {
           setValue('author', payload.author);
           setValue('content', payload.content);
           setValue('title', payload.title);
+          setValue('isHot', payload.isHot);
         });
     }
   }, [dispatch, id, setValue]);

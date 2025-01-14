@@ -1,0 +1,14 @@
+.input {
+  &[type='date'],
+  &[type='time'],
+  &[type='datetime-local'] {
+    @apply h-9;
+    @apply py-0;
+    @apply w-full;
+    @apply text-white;
+    @apply grid;
+    @apply fill-white;
+
+    color-scheme: dark;
+  }
+}
