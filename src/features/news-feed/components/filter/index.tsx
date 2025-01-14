@@ -3,17 +3,29 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
-import { useAppDispatch } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Button, Card, Input } from '@/ui';
 
-import { FilterSchema, filterSchema, getAllNewsThunk } from '../../model';
+import {
+  FilterSchema,
+  filterSchema,
+  getAllNewsThunk,
+  isAnyFilterAppliedSelector,
+} from '../../model';
 
 interface Props {
   className?: string;
+  onSubmit?: () => void;
+  onClear?: () => void;
 }
 
-export const Filter = ({ className }: Props) => {
+export const Filter = ({
+  className,
+  onSubmit: propsOnSubmit,
+  onClear: propsOnClear,
+}: Props) => {
   const dispatch = useAppDispatch();
+  const isAnyFiltersApplied = useAppSelector(isAnyFilterAppliedSelector);
 
   const { register, handleSubmit, setValue } = useForm({
     resolver: zodResolver(filterSchema),
@@ -26,21 +38,23 @@ export const Filter = ({ className }: Props) => {
     },
   });
 
-  const onSubmit = (data: FilterSchema) => {
+  const handleFormSubmit = (data: FilterSchema) => {
     void dispatch(getAllNewsThunk(data));
+    propsOnSubmit?.();
   };
 
-  const onClear = () => {
+  const handleClear = () => {
     void dispatch(getAllNewsThunk({}));
     setValue('content', '');
     setValue('author', '');
     setValue('title', '');
     setValue('createdStart', '');
     setValue('createdEnd', '');
+    propsOnClear?.();
   };
 
   return (
-    <form className={className} onSubmit={handleSubmit(onSubmit)}>
+    <form className={className} onSubmit={handleSubmit(handleFormSubmit)}>
       <Card indents>
         <div
           className={clsx(
@@ -80,9 +94,11 @@ export const Filter = ({ className }: Props) => {
             Применить
           </Button>
 
-          <Button fullWidth icon={<XCircleIcon />} onClick={onClear}>
-            Очистить
-          </Button>
+          {isAnyFiltersApplied && (
+            <Button fullWidth icon={<XCircleIcon />} onClick={handleClear}>
+              Очистить
+            </Button>
+          )}
         </div>
       </div>
     </form>

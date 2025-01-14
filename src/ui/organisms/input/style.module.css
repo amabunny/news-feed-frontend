@@ -7,7 +7,7 @@
     @apply w-full;
     @apply text-white;
     @apply grid;
-    @apply fill-white;
+    @apply min-w-[95%];
 
     color-scheme: dark;
   }

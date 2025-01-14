@@ -37,6 +37,7 @@ const newsFeedReducer = createReducer(initialState, (builder) =>
     }))
 );
 
+export * from './selectors';
 export * from './thunks';
 export * from './types';
 export { newsFeedReducer };
