@@ -1,6 +1,7 @@
 import { MenuButton } from '@headlessui/react';
 import {
   EllipsisHorizontalCircleIcon,
+  FireIcon,
   PencilSquareIcon,
   TrashIcon,
 } from '@heroicons/react/16/solid';
@@ -22,6 +23,7 @@ export const NewsItem = ({
   author,
   id,
   createdTimestamp,
+  isHot,
 }: NewsFeedItem) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -56,15 +58,22 @@ export const NewsItem = ({
 
   return (
     <Card className={clsx('relative')} indents>
-      <div>
-        <span className={'text-xs'}>Автор: {author}</span>
-      </div>
-
-      {formattedDate && (
-        <div className={'mb-2'}>
-          <span className={'text-xs'}>Создано: {formattedDate}</span>
+      <div className={clsx('grid', 'gap-6', 'grid-flow-col', 'justify-start')}>
+        <div>
+          <span className={'text-xs'}>Автор: {author}</span>
+          {formattedDate && (
+            <div className={'mb-2'}>
+              <span className={'text-xs'}>Создано: {formattedDate}</span>
+            </div>
+          )}
         </div>
-      )}
+
+        {isHot && (
+          <span className={clsx('text-xs', 'relative', 'top-2')}>
+            <FireIcon className={clsx('size-6', 'fill-orange-500')} />
+          </span>
+        )}
+      </div>
 
       <h2 className={clsx('dark:text-white', 'mb-5', 'text-2xl')}>{title}</h2>
 
