@@ -6,9 +6,10 @@ import {
   TrashIcon,
 } from '@heroicons/react/16/solid';
 import clsx from 'clsx';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { useNavigate } from 'react-router';
 
+import { ConfirmContext } from '@/features/confirm';
 import { useAppDispatch } from '@/lib/hooks';
 import { RoutesService } from '@/services/routes.ts';
 import { NewsFeedItem } from '@/types/news-feed';
@@ -27,6 +28,7 @@ export const NewsItem = ({
 }: NewsFeedItem) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { confirm } = useContext(ConfirmContext);
 
   const handleEditClick = () => {
     if (id) {
@@ -34,8 +36,13 @@ export const NewsItem = ({
     }
   };
 
-  const handleDeleteClick = () => {
-    if (id) {
+  const handleDeleteClick = async () => {
+    const result = await confirm({
+      confirmation: 'Вы действительно хотите удалить новость?',
+      title: 'Вы уверены?',
+    });
+
+    if (result && id) {
       void dispatch(deleteNewsItemThunk(id));
     }
   };
@@ -58,7 +65,15 @@ export const NewsItem = ({
 
   return (
     <Card className={clsx('relative')} indents>
-      <div className={clsx('grid', 'gap-6', 'grid-flow-col', 'justify-start')}>
+      <div
+        className={clsx(
+          'grid',
+          'gap-6',
+          'grid-flow-col',
+          'justify-start',
+          'bg-opacity-5'
+        )}
+      >
         <div>
           <span className={'text-xs'}>Автор: {author}</span>
           {formattedDate && (

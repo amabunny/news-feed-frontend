@@ -3,6 +3,7 @@ export { Label, Link, Switch } from './molecules';
 export {
   Button,
   Checkbox,
+  ConfirmDialog,
   DropdownMenu,
   Editor,
   Input,

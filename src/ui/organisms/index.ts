@@ -1,5 +1,6 @@
 export * from './button';
 export * from './checkbox';
+export * from './confirm-dialog';
 export * from './dropdown-menu';
 export * from './editor';
 export * from './header';

@@ -35,7 +35,7 @@ export const Button = ({
         'data-[focus]:outline-1',
         'data-[focus]:outline-white',
         'transition-all',
-        fullWidth && clsx('w-full')
+        fullWidth && 'w-full'
       )}
       {...rest}
     >

@@ -6,7 +6,7 @@ import { NewsItem } from '@/features/news-feed/components/news-item';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { BaseTemplateFullHeightLayer, PageInfo } from '@/ui';
 
-import { getAllNewsThunk } from '../../model';
+import { getAllNewsThunk, resetNewsFeedAction } from '../../model';
 
 export const HotNewsFeed = () => {
   const loading = useAppSelector((state) => state.newsFeed.loading);
@@ -15,6 +15,9 @@ export const HotNewsFeed = () => {
 
   useEffect(() => {
     void dispatch(getAllNewsThunk({ isHot: true }));
+    return () => {
+      dispatch(resetNewsFeedAction());
+    };
   }, [dispatch]);
 
   const isListEmpty = news.length === 0 && !loading;

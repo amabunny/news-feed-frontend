@@ -13,7 +13,11 @@ import { NewsFeedItem } from '@/types/news-feed.ts';
 import { Link } from '@/ui';
 import { PageInfo } from '@/ui';
 
-import { getAllNewsThunk, isAnyFilterAppliedSelector } from '../../model';
+import {
+  getAllNewsThunk,
+  isAnyFilterAppliedSelector,
+  resetNewsFeedAction,
+} from '../../model';
 import { NewsItem } from '../news-item';
 
 export const NewsFeed = () => {
@@ -43,6 +47,10 @@ export const NewsFeed = () => {
 
   useEffect(() => {
     void dispatch(getAllNewsThunk({}));
+
+    return () => {
+      dispatch(resetNewsFeedAction());
+    };
   }, [dispatch]);
 
   const isListEmpty = news.length === 0 && !loading;

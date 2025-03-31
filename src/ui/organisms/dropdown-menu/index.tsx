@@ -6,7 +6,7 @@ export interface DropdownMenuOption {
   label: ReactNode;
   icon?: ReactNode;
   key: string;
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void | Promise<void>;
 }
 
 type Props = PropsWithChildren<{
@@ -52,7 +52,7 @@ export const DropdownMenu = ({ children, options }: Props) => {
                 'px-3',
                 'data-[focus]:bg-white/10'
               )}
-              onClick={(e) => onClick?.(e)}
+              onClick={(e) => void onClick?.(e)}
             >
               {icon}
               {label}
