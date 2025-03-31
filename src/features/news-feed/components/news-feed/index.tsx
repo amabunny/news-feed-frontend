@@ -9,7 +9,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Filter } from '@/features/news-feed/components/filter';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { RoutesService } from '@/services/routes.ts';
-import { NewsFeedItem } from '@/types/news-feed.ts';
 import { Link } from '@/ui';
 import { PageInfo } from '@/ui';
 
@@ -18,7 +17,7 @@ import {
   isAnyFilterAppliedSelector,
   resetNewsFeedAction,
 } from '../../model';
-import { NewsItem } from '../news-item';
+import { NewsItemsLoading } from '../news-items-loading';
 
 export const NewsFeed = () => {
   const newsContainer = useRef<HTMLDivElement | null>(null);
@@ -27,7 +26,7 @@ export const NewsFeed = () => {
 
   const dispatch = useAppDispatch();
   const isAnyFilterApplied = useAppSelector(isAnyFilterAppliedSelector);
-  const news: NewsFeedItem[] = useAppSelector((state) => state.newsFeed.news);
+  const news = useAppSelector((state) => state.newsFeed.news);
   const loading = useAppSelector((state) => state.newsFeed.loading);
 
   const handleShowFiltersClick = () => {
@@ -113,9 +112,7 @@ export const NewsFeed = () => {
         <div ref={newsContainer} className={clsx('relative', '-top-24')} />
 
         <div className={clsx('grid', 'gap-5')}>
-          {news.map((newsItem) => (
-            <NewsItem key={newsItem.id} {...newsItem} />
-          ))}
+          <NewsItemsLoading />
         </div>
       </div>
     </div>

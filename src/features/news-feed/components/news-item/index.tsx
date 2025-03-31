@@ -13,10 +13,14 @@ import { ConfirmContext } from '@/features/confirm';
 import { useAppDispatch } from '@/lib/hooks';
 import { RoutesService } from '@/services/routes.ts';
 import { NewsFeedItem } from '@/types/news-feed';
-import { Card, DropdownMenu } from '@/ui';
+import { Card, DropdownMenu, Skeleton } from '@/ui';
 
 import { deleteNewsItemThunk } from '../../model';
 import classes from './style.module.css';
+
+type Props = NewsFeedItem & {
+  loading?: boolean;
+};
 
 export const NewsItem = ({
   content,
@@ -25,7 +29,8 @@ export const NewsItem = ({
   id,
   createdTimestamp,
   isHot,
-}: NewsFeedItem) => {
+  loading,
+}: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { confirm } = useContext(ConfirmContext);
@@ -75,10 +80,21 @@ export const NewsItem = ({
         )}
       >
         <div>
-          <span className={'text-xs'}>Автор: {author}</span>
+          {loading ? (
+            <div className={'animate-pulse'}>
+              <Skeleton className={'h-2.5 w-24 mb-2'}></Skeleton>
+            </div>
+          ) : (
+            <span className={'text-xs'}>Автор: {author}</span>
+          )}
+
           {formattedDate && (
             <div className={'mb-2'}>
-              <span className={'text-xs'}>Создано: {formattedDate}</span>
+              {loading ? (
+                <Skeleton className={'h-2.5 w-20'} />
+              ) : (
+                <span className={'text-xs'}>Создано: {formattedDate}</span>
+              )}
             </div>
           )}
         </div>
@@ -90,48 +106,62 @@ export const NewsItem = ({
         )}
       </div>
 
-      <h2 className={clsx('dark:text-white', 'mb-5', 'text-2xl')}>{title}</h2>
+      {loading ? (
+        <Skeleton className={'w-32 h-8 mb-3'} />
+      ) : (
+        <h2 className={clsx('dark:text-white', 'mb-5', 'text-2xl')}>{title}</h2>
+      )}
 
-      <div
-        className={classes.stylesContainer}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
+      {loading ? (
+        <>
+          <Skeleton className={'h-2.5 mb-2'} />
+          <Skeleton className={'h-2.5 mb-2'} />
+          <Skeleton className={'h-2.5 mb-2'} />
+        </>
+      ) : (
+        <div
+          className={classes.stylesContainer}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )}
 
-      <div className={clsx('absolute right-2 top-2')}>
-        <DropdownMenu
-          options={[
-            {
-              label: 'Изменить',
-              key: 'edit',
-              icon: <PencilSquareIcon className={'size-4 fill-white/60'} />,
-              onClick: handleEditClick,
-            },
-            {
-              label: 'Удалить',
-              key: 'delete',
-              icon: <TrashIcon className={'size-4 fill-white/60'} />,
-              onClick: handleDeleteClick,
-            },
-          ]}
-        >
-          <MenuButton
-            className={clsx(
-              'py-1',
-              'px-1',
-              'text-sm/6',
-              'font-semibold',
-              'text-white',
-              'focus:outline-none',
-              'data-[focus]:outline-1',
-              'data-[focus]:outline-white'
-            )}
+      {!loading && (
+        <div className={clsx('absolute right-2 top-2')}>
+          <DropdownMenu
+            options={[
+              {
+                label: 'Изменить',
+                key: 'edit',
+                icon: <PencilSquareIcon className={'size-4 fill-white/60'} />,
+                onClick: handleEditClick,
+              },
+              {
+                label: 'Удалить',
+                key: 'delete',
+                icon: <TrashIcon className={'size-4 fill-white/60'} />,
+                onClick: handleDeleteClick,
+              },
+            ]}
           >
-            <EllipsisHorizontalCircleIcon
-              className={clsx('size-4', 'fill-white/60', 'hover:fill-white')}
-            />
-          </MenuButton>
-        </DropdownMenu>
-      </div>
+            <MenuButton
+              className={clsx(
+                'py-1',
+                'px-1',
+                'text-sm/6',
+                'font-semibold',
+                'text-white',
+                'focus:outline-none',
+                'data-[focus]:outline-1',
+                'data-[focus]:outline-white'
+              )}
+            >
+              <EllipsisHorizontalCircleIcon
+                className={clsx('size-4', 'fill-white/60', 'hover:fill-white')}
+              />
+            </MenuButton>
+          </DropdownMenu>
+        </div>
+      )}
     </Card>
   );
 };

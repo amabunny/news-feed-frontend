@@ -2,11 +2,11 @@ import { FireIcon } from '@heroicons/react/16/solid';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 
-import { NewsItem } from '@/features/news-feed/components/news-item';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { BaseTemplateFullHeightLayer, PageInfo } from '@/ui';
 
 import { getAllNewsThunk, resetNewsFeedAction } from '../../model';
+import { NewsItemsLoading } from '../news-items-loading';
 
 export const HotNewsFeed = () => {
   const loading = useAppSelector((state) => state.newsFeed.loading);
@@ -35,9 +35,7 @@ export const HotNewsFeed = () => {
         />
       )}
 
-      {news.map((newsItem) => (
-        <NewsItem key={newsItem.id} {...newsItem} />
-      ))}
+      <NewsItemsLoading />
     </BaseTemplateFullHeightLayer>
   );
 };

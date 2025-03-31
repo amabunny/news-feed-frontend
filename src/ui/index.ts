@@ -1,4 +1,4 @@
-export { BaseTemplateFullHeightLayer, Card, PageInfo } from './atoms';
+export { BaseTemplateFullHeightLayer, Card, PageInfo, Skeleton } from './atoms';
 export { Label, Link, Switch } from './molecules';
 export {
   Button,
