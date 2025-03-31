@@ -15,7 +15,7 @@
   }
 
   img {
-    @apply md:max-h-96;
+    @apply md:max-h-[70vh];
   }
 
   blockquote {
