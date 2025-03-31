@@ -18,7 +18,7 @@ export const BaseTemplate = ({ children }: Props) => {
         'relative'
       )}
     >
-      <div className={clsx('sticky', 'top-0', 'z-50')}>
+      <div className={clsx('sticky', 'top-0', 'z-10')}>
         <Header onMobileMenuVisibleChange={setContentBackdrop} />
       </div>
 
