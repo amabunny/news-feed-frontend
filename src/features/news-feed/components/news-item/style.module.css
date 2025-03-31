@@ -5,6 +5,7 @@
 .stylesContainer {
   @apply text-white;
   @apply overflow-x-auto;
+  @apply overflow-y-hidden;
 
   h3 {
     @apply text-xl;

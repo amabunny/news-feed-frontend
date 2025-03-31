@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 
 import { ConfirmOptions } from '@/features/confirm';
 import { ConfirmDialog } from '@/ui';
@@ -31,10 +31,6 @@ export const ConfirmDialogProvider = ({
       }),
     []
   );
-
-  useEffect(() => {
-    console.log(resolve);
-  }, [resolve]);
 
   return (
     <ConfirmContext.Provider value={{ confirm }}>

@@ -13,6 +13,7 @@ interface Props {
   className?: string;
   label?: ReactNode;
   description?: ReactNode;
+  id?: string;
 }
 
 export const Checkbox = ({
@@ -21,12 +22,13 @@ export const Checkbox = ({
   label,
   checked,
   description,
+  id,
 }: Props) => {
   return (
-    <Field>
-      <div className={clsx('flex', 'gap-3', 'items-center')}>
-        {label && <Label className={'text-sm/6'}>{label}</Label>}
+    <>
+      <Field className={clsx('flex', 'gap-3', 'items-center', 'flex-wrap')}>
         <HeadlessCheckbox
+          id={id}
           checked={checked}
           onChange={onChange}
           className={clsx(
@@ -54,8 +56,17 @@ export const Checkbox = ({
             />
           </svg>
         </HeadlessCheckbox>
-      </div>
-      {description && <Description>{description}</Description>}
-    </Field>
+
+        {label && (
+          <Label className={'text-sm/6'} htmlFor={id}>
+            {label}
+          </Label>
+        )}
+
+        {description && (
+          <Description className={'basis-full'}>{description}</Description>
+        )}
+      </Field>
+    </>
   );
 };

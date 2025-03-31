@@ -7,6 +7,7 @@ export const newsFeedItemSchema = z.object({
   author: z.string().min(1, 'Поле обязательное'),
   createdTimestamp: z.string().optional(),
   isHot: z.boolean().optional().nullable(),
+  hasLargeContent: z.boolean().optional().nullable(),
 });
 
 export const newsFeedItemListSchema = z.array(newsFeedItemSchema);

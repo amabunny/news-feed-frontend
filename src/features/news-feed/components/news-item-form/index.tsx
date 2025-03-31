@@ -31,6 +31,8 @@ export const NewsItemForm = ({ id }: Props) => {
       title: '',
       content: '',
       author: '',
+      hasLargeContent: false,
+      isHot: false,
     },
   });
 
@@ -59,6 +61,7 @@ export const NewsItemForm = ({ id }: Props) => {
           setValue('content', payload.content);
           setValue('title', payload.title);
           setValue('isHot', payload.isHot);
+          setValue('hasLargeContent', payload.hasLargeContent);
         });
     }
   }, [dispatch, id, setValue]);
@@ -95,9 +98,25 @@ export const NewsItemForm = ({ id }: Props) => {
                 checked={value ?? false}
                 onChange={onChange}
                 label={'Пометить горячей'}
+                id={'isHot'}
               />
             )}
             name={'isHot'}
+          />
+        </div>
+
+        <div className={'mb-5'}>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Checkbox
+                checked={value ?? false}
+                onChange={onChange}
+                label={'Длинный пост'}
+                id={'hasLargeContent'}
+              />
+            )}
+            name={'hasLargeContent'}
           />
         </div>
 

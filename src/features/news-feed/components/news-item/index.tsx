@@ -6,14 +6,15 @@ import {
   TrashIcon,
 } from '@heroicons/react/16/solid';
 import clsx from 'clsx';
-import { useContext, useMemo } from 'react';
+import { MouseEvent, useContext, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 import { ConfirmContext } from '@/features/confirm';
 import { useAppDispatch } from '@/lib/hooks';
 import { RoutesService } from '@/services/routes.ts';
 import { NewsFeedItem } from '@/types/news-feed';
-import { Card, DropdownMenu, Skeleton } from '@/ui';
+import { Card, DropdownMenu, Link, Skeleton } from '@/ui';
 
 import { deleteNewsItemThunk } from '../../model';
 import classes from './style.module.css';
@@ -30,10 +31,22 @@ export const NewsItem = ({
   createdTimestamp,
   isHot,
   loading,
+  hasLargeContent,
 }: Props) => {
+  const [heightLimited, setHeightLimited] = useState(false);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { confirm } = useContext(ConfirmContext);
+
+  useEffect(() => {
+    if (hasLargeContent) setHeightLimited(hasLargeContent);
+  }, [hasLargeContent]);
+
+  const handleShowFullClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setHeightLimited(false);
+  };
 
   const handleEditClick = () => {
     if (id) {
@@ -48,7 +61,9 @@ export const NewsItem = ({
     });
 
     if (result && id) {
-      void dispatch(deleteNewsItemThunk(id));
+      void dispatch(deleteNewsItemThunk(id)).then(() =>
+        toast.success('Новость успешно удалена', { theme: 'dark' })
+      );
     }
   };
 
@@ -114,15 +129,36 @@ export const NewsItem = ({
 
       {loading ? (
         <>
-          <Skeleton className={'h-2.5 mb-2'} />
-          <Skeleton className={'h-2.5 mb-2'} />
-          <Skeleton className={'h-2.5 mb-2'} />
+          <Skeleton className={'h-2.5 mb-2 lg:w-96'} />
+          <Skeleton className={'h-2.5 mb-2 lg:w-96'} />
+          <Skeleton className={'h-2.5 mb-2 lg:w-96'} />
         </>
       ) : (
-        <div
-          className={classes.stylesContainer}
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        <div className={'relative'}>
+          <div
+            className={clsx(classes.stylesContainer, {
+              'max-h-[70vh] lg:max-h-[40vh]': heightLimited,
+            })}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+
+          {heightLimited && (
+            <div
+              className={clsx(
+                'h-12 w-full bg-gradient-to-b from-transparent to-neutral-800',
+                'absolute bottom-0'
+              )}
+            />
+          )}
+        </div>
+      )}
+
+      {heightLimited && (
+        <div>
+          <Link to={'#'} underline onClick={handleShowFullClick}>
+            Показать полностью
+          </Link>
+        </div>
       )}
 
       {!loading && (
